@@ -350,28 +350,40 @@ section[id],
 }
 
 
-
-/* ========== MOBILE ONLY GLOBAL FIX (NO INNER STYLES) ========== */
+/* ========== MOBILE LAYOUT FIX (PHONE ONLY) ========== */
 @media (max-width: 768px) {
 
-  /* Disable fixed background on mobile */
-  body {
-    background-attachment: scroll;
+  /* Header navigation wrap */
+  header nav,
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
   }
 
-  body::before {
-    position: absolute;
+  /* Prevent hero text overlap */
+  .home-section {
+    padding-top: 5.5rem; /* space below fixed header */
+    text-align: center;
   }
 
-  /* Remove heavy decorative elements only */
-  .floating-orb,
-  .global-tech-icon {
-    display: none !important;
+  /* Reduce hero heading size slightly */
+  .home-section h1 {
+    font-size: 2rem;
+    line-height: 1.3;
   }
 
-  /* Prevent sideways scroll caused by fixed elements */
-  html, body {
-    overflow-x: hidden;
+  /* Reduce subtitle spacing */
+  .home-section h2,
+  .home-section h3,
+  .home-section p {
+    margin-top: 0.75rem;
+  }
+
+  /* Buttons stack nicely */
+  .home-section .buttons,
+  .home-section .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
-

@@ -351,4 +351,27 @@ section[id],
 
 
 
+/* ========== MOBILE ONLY GLOBAL FIX (NO INNER STYLES) ========== */
+@media (max-width: 768px) {
+
+  /* Disable fixed background on mobile */
+  body {
+    background-attachment: scroll;
+  }
+
+  body::before {
+    position: absolute;
+  }
+
+  /* Remove heavy decorative elements only */
+  .floating-orb,
+  .global-tech-icon {
+    display: none !important;
+  }
+
+  /* Prevent sideways scroll caused by fixed elements */
+  html, body {
+    overflow-x: hidden;
+  }
+}
 

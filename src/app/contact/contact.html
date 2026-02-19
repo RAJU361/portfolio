@@ -1,0 +1,51 @@
+<div class="contact-wrapper">
+  <div class="container">
+    
+    <div class="contact-grid">
+      <!-- LEFT SIDE - Email, GitHub, LinkedIn -->
+      <div class="contact-info">
+        <div class="info-item" data-category="email" (click)="openMail()">
+          <span class="info-icon">📧</span>
+          <span class="info-text" style="color: aliceblue;">rajeshchouri361@gmail.com</span>
+        </div>
+        
+        <button class="info-btn" data-category="github" (click)="openLink('https://github.com/RAJU361')">
+          <span class="info-icon">💻</span>
+          <span class="info-text">GitHub</span>
+        </button>
+        
+        <button class="info-btn" data-category="linkedin" (click)="openLink('https://www.linkedin.com/in/rajesh-chouri-4aa72a227/')">
+          <span class="info-icon">💼</span>
+          <span class="info-text">LinkedIn</span>
+        </button>
+      </div>
+      
+      <!-- RIGHT SIDE - Send Message Form -->
+      <div class="message-box">
+        <input 
+          type="text" 
+          placeholder="Your Name" 
+          class="form-input"
+          #name>
+        
+        <input 
+          type="email" 
+          placeholder="Your Email" 
+          class="form-input"
+          #email>
+        
+        <textarea 
+          placeholder="Your Message" 
+          class="form-input message-input"
+          #message></textarea>
+        
+        <button 
+          class="send-btn"
+          (click)="sendMail(name.value, email.value, message.value)">
+          Send Message 
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

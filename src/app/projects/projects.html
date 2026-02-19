@@ -1,0 +1,65 @@
+<div class="projects-container">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p class="loading-text">Loading projects...</p>
+  </div>
+  
+  <!-- Error State -->
+  <div *ngIf="!loading && error" class="error-state">
+    <p class="error-text">{{ error }}</p>
+  </div>
+  
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && projects.length === 0" class="empty-state">
+    <p class="empty-text">No projects yet. Check back soon!</p>
+  </div>
+  
+  <!-- Projects Grid - 2 columns -->
+  <div *ngIf="!loading && projects.length > 0" class="projects-grid">
+    <div *ngFor="let project of projects" 
+         class="project-card project-item"
+         [class.ai-project]="project.isAIProject"
+         [attr.data-category]="project.category">
+      
+      <!-- Fixed Header Section -->
+      <div class="project-header-fixed">
+        <div class="project-meta">
+          <span class="project-category">{{ project.category || 'Web' }}</span>
+          <span *ngIf="project.isAIProject" class="ai-badge">🤖 AI</span>
+        </div>
+        
+        <h3 class="project-title">{{ project.title || 'Untitled Project' }}</h3>
+      </div>
+      
+      <!-- Scrollable Content Area -->
+      <div class="project-description-container">
+        <p class="project-description">
+          {{ project.description || 'No description available' }}
+        </p>
+      </div>
+      
+      <!-- Fixed Technologies & Button Section -->
+      <div class="project-footer">
+        <!-- Technologies -->
+        <div class="project-technologies">
+          <span *ngFor="let tech of (project.technologies || [])" class="tech-tag">
+            {{ tech }}
+          </span>
+          <span *ngIf="!project.technologies || project.technologies.length === 0" class="tech-tag no-tech">
+            No technologies
+          </span>
+        </div>
+        
+        <!-- Button -->
+        <a *ngIf="project.link" [href]="project.link" target="_blank" class="project-link">
+          {{ project.isAIProject ? 'View AI Demo →' : 'View Project →' }}
+        </a>
+        <a *ngIf="!project.link" class="project-link disabled">
+          No Link Available
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</div>

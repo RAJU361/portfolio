@@ -1,0 +1,336 @@
+<div class="admin-container"style="margin-top: 50px;">
+  <!-- Header -->
+  <div class="admin-header">
+    <div class="header-content">
+      <h1>Admin Panel</h1>
+      <button class="logout-btn" (click)="logout()">
+        <span>🚪</span>
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Messages -->
+  <div class="messages">
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="admin-tabs">
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'projects'"
+      (click)="setActiveTab('projects')">
+      📁 Projects
+    </button>
+    <button 
+      class="tab-btn" 
+      [class.active]="activeTab === 'skills'"
+      (click)="setActiveTab('skills')">
+      🛠️ Skills
+    </button>
+  </div>
+
+  <!-- Projects Tab -->
+  <div class="tab-content" *ngIf="activeTab === 'projects'">
+    <!-- Add/Edit Project Form -->
+    <div class="form-card">
+      <h2>{{ editingProject ? 'Edit Project' : 'Add New Project' }}</h2>
+      
+      <div class="form-grid">
+        <!-- Use separate models for add and edit -->
+        <ng-container *ngIf="!editingProject">
+          <div class="form-group">
+            <label>Title *</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newProject.title"
+              class="form-control"
+              placeholder="Project title">
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select 
+              [(ngModel)]="newProject.category"
+              class="form-control">
+              <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Description *</label>
+            <textarea 
+              [(ngModel)]="newProject.description"
+              class="form-control"
+              rows="3"
+              placeholder="Project description"></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Technologies (comma separated)</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newProject.technologies"
+              class="form-control"
+              placeholder="Angular, Firebase, TypeScript">
+          </div>
+
+          <div class="form-group">
+            <label>Project Link</label>
+            <input 
+              type="url" 
+              [(ngModel)]="newProject.link"
+              class="form-control"
+              placeholder="https://...">
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input 
+                type="checkbox" 
+                [(ngModel)]="newProject.isAIProject">
+              AI Project
+            </label>
+          </div>
+        </ng-container>
+
+        <!-- Edit mode -->
+        <ng-container *ngIf="editingProject">
+          <div class="form-group">
+            <label>Title *</label>
+            <input 
+              type="text" 
+              [(ngModel)]="editingProject.title"
+              class="form-control"
+              placeholder="Project title">
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select 
+              [(ngModel)]="editingProject.category"
+              class="form-control">
+              <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Description *</label>
+            <textarea 
+              [(ngModel)]="editingProject.description"
+              class="form-control"
+              rows="3"
+              placeholder="Project description"></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Technologies (comma separated)</label>
+            <input 
+              type="text" 
+              [(ngModel)]="editingProject.technologies"
+              class="form-control"
+              placeholder="Angular, Firebase, TypeScript">
+          </div>
+
+          <div class="form-group">
+            <label>Project Link</label>
+            <input 
+              type="url" 
+              [(ngModel)]="editingProject.link"
+              class="form-control"
+              placeholder="https://...">
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input 
+                type="checkbox" 
+                [(ngModel)]="editingProject.isAIProject">
+              AI Project
+            </label>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="form-actions">
+        <button 
+          *ngIf="editingProject" 
+          class="btn btn-secondary"
+          (click)="cancelEdit()">
+          Cancel
+        </button>
+        <button 
+          class="btn btn-primary"
+          [disabled]="loading"
+          (click)="editingProject ? updateProject() : addProject()">
+          {{ loading ? 'Saving...' : (editingProject ? 'Update Project' : 'Add Project') }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Projects List -->
+    <div class="list-card">
+      <h2>Projects List</h2>
+      
+      <div *ngIf="projects.length === 0" class="empty-state">
+        <p>No projects yet. Add your first project above!</p>
+      </div>
+
+      <div class="projects-list" *ngIf="projects.length > 0">
+        <div *ngFor="let project of projects" class="list-item">
+          <div class="item-content">
+            <div class="item-header">
+              <h3>{{ project.title }}</h3>
+              <span class="category-badge" [class.ai-badge]="project.isAIProject">
+                {{ project.category }}
+                <span *ngIf="project.isAIProject">🤖</span>
+              </span>
+            </div>
+            <p class="item-description">{{ project.description }}</p>
+            <div class="item-technologies">
+              <span *ngFor="let tech of project.technologies" class="tech-tag">
+                {{ tech }}
+              </span>
+            </div>
+            <a *ngIf="project.link" [href]="project.link" target="_blank" class="item-link">
+              View Project →
+            </a>
+          </div>
+          <div class="item-actions">
+            <button class="action-btn edit" (click)="editProject(project)" title="Edit">
+              ✏️
+            </button>
+            <button class="action-btn delete" (click)="deleteProject(project.id)" title="Delete">
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills Tab -->
+  <div class="tab-content" *ngIf="activeTab === 'skills'">
+    <!-- Add/Edit Skill Form -->
+    <div class="form-card">
+      <h2>{{ editingSkill ? 'Edit Skill' : 'Add New Skill' }}</h2>
+      
+      <div class="form-grid">
+        <!-- Add mode -->
+        <ng-container *ngIf="!editingSkill">
+          <div class="form-group">
+            <label>Skill Name *</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newSkill.name"
+              class="form-control"
+              placeholder="e.g., Angular">
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select 
+              [(ngModel)]="newSkill.category"
+              class="form-control">
+              <option *ngFor="let cat of skillCategories" [value]="cat">{{ cat }}</option>
+            </select>
+          </div>
+
+          <!-- <div class="form-group">
+            <label>Proficiency (%)</label>
+            <input 
+              type="number" 
+              min="0" 
+              max="100"
+              [(ngModel)]="newSkill.proficiency"
+              class="form-control">
+          </div> -->
+        </ng-container>
+
+        <!-- Edit mode -->
+        <ng-container *ngIf="editingSkill">
+          <div class="form-group">
+            <label>Skill Name *</label>
+            <input 
+              type="text" 
+              [(ngModel)]="editingSkill.name"
+              class="form-control"
+              placeholder="e.g., Angular">
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select 
+              [(ngModel)]="editingSkill.category"
+              class="form-control">
+              <option *ngFor="let cat of skillCategories" [value]="cat">{{ cat }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Proficiency (%)</label>
+            <input 
+              type="number" 
+              min="0" 
+              max="100"
+              [(ngModel)]="editingSkill.proficiency"
+              class="form-control">
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="form-actions">
+        <button 
+          *ngIf="editingSkill" 
+          class="btn btn-secondary"
+          (click)="cancelSkillEdit()">
+          Cancel
+        </button>
+        <button 
+          class="btn btn-primary"
+          [disabled]="loading"
+          (click)="editingSkill ? updateSkill() : addSkill()">
+          {{ loading ? 'Saving...' : (editingSkill ? 'Update Skill' : 'Add Skill') }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Skills List -->
+    <div class="list-card">
+      <h2>Skills List</h2>
+      
+      <div *ngIf="skills.length === 0" class="empty-state">
+        <p>No skills yet. Add your first skill above!</p>
+      </div>
+
+      <div class="skills-list" *ngIf="skills.length > 0">
+        <div *ngFor="let skill of skills" class="skill-item">
+          <div class="skill-info">
+            <div class="skill-header">
+              <h3>{{ skill.name }}</h3>
+              <span class="skill-category">{{ skill.category }}</span>
+            </div>
+            <div class="skill-progress">
+              <div class="progress-bar" [style.width.%]="skill.proficiency"></div>
+              <span class="skill-percentage">{{ skill.proficiency }}%</span>
+            </div>
+          </div>
+          <div class="skill-actions">
+            <button class="action-btn edit" (click)="editSkill(skill)" title="Edit">
+              ✏️
+            </button>
+            <button class="action-btn delete" (click)="deleteSkill(skill.id)" title="Delete">
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

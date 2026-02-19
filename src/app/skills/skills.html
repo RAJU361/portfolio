@@ -1,0 +1,123 @@
+<div class="skills-container">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p class="loading-text">Loading skills...</p>
+  </div>
+  
+  <!-- Error State -->
+  <div *ngIf="!loading && error" class="error-state">
+    <p class="error-text">{{ error }}</p>
+  </div>
+  
+  <!-- Skills Display - Beautiful Glassmorphism Grid -->
+  <div *ngIf="!loading && skills.length > 0" class="skills-beautiful-grid">
+    
+    <!-- Frontend -->
+    <div *ngIf="getSkillsByCategory('Frontend').length > 0" 
+         class="skill-beautiful-card" 
+         data-category="frontend">
+      <div class="skill-beautiful-header">
+        <span class="skill-beautiful-icon">🎨</span>
+        <h3>Frontend</h3>
+        <span class="skill-beautiful-count">{{ getSkillsByCategory('Frontend').length }}</span>
+      </div>
+      <div class="skill-beautiful-list">
+        <div *ngFor="let skill of getSkillsByCategory('Frontend')" class="skill-beautiful-item">
+          <span class="skill-beautiful-dot"></span>
+          <span class="skill-beautiful-name">{{ skill.name }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Backend -->
+    <div *ngIf="getSkillsByCategory('Backend').length > 0" 
+         class="skill-beautiful-card"
+         data-category="backend">
+      <div class="skill-beautiful-header">
+        <span class="skill-beautiful-icon">⚙️</span>
+        <h3>Backend</h3>
+        <span class="skill-beautiful-count">{{ getSkillsByCategory('Backend').length }}</span>
+      </div>
+      <div class="skill-beautiful-list">
+        <div *ngFor="let skill of getSkillsByCategory('Backend')" class="skill-beautiful-item">
+          <span class="skill-beautiful-dot"></span>
+          <span class="skill-beautiful-name">{{ skill.name }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Database -->
+    <div *ngIf="getSkillsByCategory('Database').length > 0" 
+         class="skill-beautiful-card"
+         data-category="database">
+      <div class="skill-beautiful-header">
+        <span class="skill-beautiful-icon">🗄️</span>
+        <h3>Database</h3>
+        <span class="skill-beautiful-count">{{ getSkillsByCategory('Database').length }}</span>
+      </div>
+      <div class="skill-beautiful-list">
+        <div *ngFor="let skill of getSkillsByCategory('Database')" class="skill-beautiful-item">
+          <span class="skill-beautiful-dot"></span>
+          <span class="skill-beautiful-name">{{ skill.name }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tools & DevOps -->
+    <div *ngIf="getSkillsByCategory('DevOps').length > 0 || getSkillsByCategory('Tools').length > 0" 
+         class="skill-beautiful-card"
+         data-category="tools">
+      <div class="skill-beautiful-header">
+        <span class="skill-beautiful-icon">🛠️</span>
+        <h3>Tools & DevOps</h3>
+        <span class="skill-beautiful-count">{{ getSkillsByCategory('DevOps').length + getSkillsByCategory('Tools').length }}</span>
+      </div>
+      <div class="skill-beautiful-list">
+        <div *ngFor="let skill of getSkillsByCategory('DevOps')" class="skill-beautiful-item">
+          <span class="skill-beautiful-dot"></span>
+          <span class="skill-beautiful-name">{{ skill.name }}</span>
+        </div>
+        <div *ngFor="let skill of getSkillsByCategory('Tools')" class="skill-beautiful-item">
+          <span class="skill-beautiful-dot"></span>
+          <span class="skill-beautiful-name">{{ skill.name }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- AI & ML -->
+    <div *ngIf="getSkillsByCategory('AI').length > 0" 
+         class="skill-beautiful-card"
+         data-category="ai">
+      <div class="skill-beautiful-header">
+        <span class="skill-beautiful-icon">🤖</span>
+        <h3>AI & ML</h3>
+        <span class="skill-beautiful-count">{{ getSkillsByCategory('AI').length }}</span>
+      </div>
+      <div class="skill-beautiful-list">
+        <div *ngFor="let skill of getSkillsByCategory('AI')" class="skill-beautiful-item">
+          <span class="skill-beautiful-dot"></span>
+          <span class="skill-beautiful-name">{{ skill.name }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Other -->
+    <div *ngIf="getSkillsByCategory('Other').length > 0" 
+         class="skill-beautiful-card"
+         data-category="other">
+      <div class="skill-beautiful-header">
+        <span class="skill-beautiful-icon">📌</span>
+        <h3>Other</h3>
+        <span class="skill-beautiful-count">{{ getSkillsByCategory('Other').length }}</span>
+      </div>
+      <div class="skill-beautiful-list">
+        <div *ngFor="let skill of getSkillsByCategory('Other')" class="skill-beautiful-item">
+          <span class="skill-beautiful-dot"></span>
+          <span class="skill-beautiful-name">{{ skill.name }}</span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

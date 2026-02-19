@@ -1,0 +1,222 @@
+<!-- HOME SECTION - NO BACKGROUND -->
+<section id="home" class="home-section" style="cursor: pointer;">
+  
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Hi, I’m <span class="highlight"> Rajesh</span>
+        </h1>
+        <div class="hero-subtitle">
+          Full-Stack Developer | AI Enthusiast
+          <span class="typing-cursor"></span>
+        </div>
+        <p class="hero-description">
+          I create scalable, user-friendly, and functional web applications using modern technologies.
+          Passionate about AI projects and innovative solutions.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">
+            <span>✨ View Projects</span>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>📬 Contact Me</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+  <div class="image-placeholder anime-container"> 
+    <div class="placeholder-content">
+      <span class="anime-emoji"> 🤖 </span>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="projects-section">
+  <div class="container">
+    <h1 class="section-title">My <span class="highlight">Projects</span></h1>
+    <p class="section-description">A collection of my recent work including AI projects</p>
+    <app-projects></app-projects>
+  </div>
+</section>
+
+<!-- SKILLS SECTION - Ensure full viewport height -->
+<section id="skills" class="skills-section" style="margin-bottom: 200px;">
+  <div class="container">
+    <h1 class="section-title">My <span class="highlight">Skills</span></h1>
+    <p class="section-description">Technologies and tools I work with</p>
+    <app-skills></app-skills>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h1 class="section-title">Contact <span class="highlight">Me</span></h1>
+    <p class="section-description">Feel free to reach out for collaborations or just a friendly hello!</p>
+    <app-contact></app-contact>
+  </div>
+</section>
+
+
+
+<!-- ABOUT SECTION - REORGANIZED LAYOUT -->
+<section id="about" class="about-section" style="cursor: pointer;">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="about-header">
+      <!-- <span class="section-badge">Get To Know Me</span> -->
+      <h2 class="section-title">About <span class="highlight">Me</span></h2>
+      <div class="title-underline"></div>
+    </div>
+    
+    <div class="about-grid">
+      <!-- LEFT COLUMN - Profile Card + Bio Card (Stacked) -->
+      <div class="about-left-column">
+        <!-- Block 1: Profile Card (John Dev) -->
+        <div class="profile-card premium-card">
+          <div class="profile-image-wrapper">
+            <div class="profile-image">
+              <div class="profile-placeholder">
+                <span class="profile-emoji">👨‍💻</span>
+              </div>
+            </div>
+            <div class="profile-shape profile-shape-1"></div>
+            <div class="profile-shape profile-shape-2"></div>
+          </div>
+          
+          <div class="profile-info">
+            <h3 class="profile-name">Rajesh Chouri</h3>
+            <p class="profile-title">Full Stack Developer</p>
+            <div class="profile-social">
+              <a  class="social-icon">📧</a>
+              <a  class="social-icon">💼</a>
+              <a  class="social-icon">🐙</a>
+              <a  class="social-icon">📱</a>
+            </div>
+          </div>
+          
+          <div class="profile-stats">
+            <div class="stat-item">
+              <span class="stat-number">{{yearsOfExperience}}+</span>
+              <span class="stat-label">Years</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <!-- <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Clients</span>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- Block 2: Bio Card (Hello I'm John) -->
+        <div class="bio-card premium-card">
+          <div class="bio-header">
+            <span class="bio-icon">👋</span>
+            <h3>Hello, I'm Rajesh</h3>
+          </div>
+          
+          <p class="bio-text">
+            I'm a passionate <strong>Full Stack Developer</strong> with over {{yearsOfExperience}}+ years of experience 
+            building exceptional digital experiences.
+          </p>
+          
+          <p class="bio-text">
+            I specialize in <strong>Angular, React, Node.js, and Firebase</strong>.
+          </p>
+          
+          <div class="bio-highlight" style="background-color: #4f698b;">
+            <span class="highlight-icon">🎯</span>
+            <div class="highlight-text">
+              <strong>Currently:</strong>  Frontend Developer at <a href="https://www.lseg.com/" target="_blank" class="company-link">
+                <span class="company-icon">🏢</span>
+                <span class="company-name">LSEG</span>
+                <span class="company-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+          
+          <!-- <div class="bio-cta">
+            <a href="#contact" class="premium-btn">
+              <span>📬 Let's Talk</span>
+            </a>
+            <a href="#" class="premium-btn-outline">
+              <span>📄 Resume</span>
+            </a>
+          </div> -->
+        </div>
+      </div>
+      
+      <!-- RIGHT COLUMN - Experience + Interests (Stacked) -->
+      <div class="about-right-column">
+       <!-- Block 3: Experience Card -->
+<div class="experience-card premium-card">
+  <h4 class="experience-title"> Work Experience</h4>
+  
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <span class="timeline-year">2024 — Present</span>
+        <h5>Frontend Developer</h5>
+        <p>LSEG • Full-time</p>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <span class="timeline-year">2023 — 2024</span>
+        <h5>Associate Developer</h5>
+        <p>LSEG • Full-time</p>
+      </div>
+    </div>
+  </div>
+</div>
+        
+        <!-- Block 4: Education & Interests Card -->
+        <div class="interests-card premium-card">
+          <div style="display: flex; gap: 1.5rem; margin-bottom: 1rem;">
+            <div style="flex: 1;">
+              <h4 style="font-size: 0.95rem; font-weight: 600; color: #1e293b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.3rem;">
+                <span>🎓</span> Education
+              </h4>
+              <p style="color: #ebecee; font-size: 0.8rem; margin-bottom: 0.2rem;"><strong>CSE</strong></p>
+              <p style="color: #eef0f4; font-size: 0.75rem;">Bangalore Institute of Technology • 2019 - 2023</p>
+              <p style="color: #eff1f3; font-size: 0.8rem; margin-bottom: 0.2rem;"><strong>PUC</strong></p>
+              <p style="color: #e8ebef; font-size: 0.75rem;">Tungal school • 2017 - 2019</p>
+            </div>
+            <div style="flex: 1;">
+              <h4 style="font-size: 0.95rem; font-weight: 600; color: #1e293b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.3rem;">
+                <span>📍</span> Location
+              </h4>
+              <p style="color: #e4e7eb; font-size: 0.8rem; margin-bottom: 0.2rem;"><strong>Bangalore, India</strong></p>
+              
+            </div>
+          </div>
+          
+          <h4 style="font-size: 0.95rem; font-weight: 600; color: #1e293b; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.3rem;">
+            <span>⚡</span> When I'm not coding
+          </h4>
+          <div class="interests-grid">
+            <div class="interest-item">📚 Reading</div>
+            <div class="interest-item">🎮 Gaming</div>
+            <div class="interest-item">✈️ Travel</div>
+            <div class="interest-item">🎧 Music</div>
+            <div class="interest-item">📸 Photo</div>
+            <div class="interest-item">☕ Coffee</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
